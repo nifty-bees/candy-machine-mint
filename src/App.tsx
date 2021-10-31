@@ -10,10 +10,7 @@ import {
   getSolletExtensionWallet,
 } from '@solana/wallet-adapter-wallets';
 
-import {
-  ConnectionProvider,
-  WalletProvider,
-} from '@solana/wallet-adapter-react';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 
 import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
 import { createTheme, ThemeProvider } from '@material-ui/core';
@@ -21,24 +18,15 @@ import { createTheme, ThemeProvider } from '@material-ui/core';
 import Home from './Home';
 import './styles/App.css';
 
-const treasury: PublicKey = new anchor.web3.PublicKey(
-  process.env.REACT_APP_TREASURY_ADDRESS as PublicKeyInitData
-);
-const config: PublicKey = new anchor.web3.PublicKey(
-  process.env.REACT_APP_CANDY_MACHINE_CONFIG as PublicKeyInitData
-);
-const candyMachineId: PublicKey = new anchor.web3.PublicKey(
-  process.env.REACT_APP_CANDY_MACHINE_ID as PublicKeyInitData
-);
+const treasury: PublicKey = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS as PublicKeyInitData);
+const config: PublicKey = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_CONFIG as PublicKeyInitData);
+const candyMachineId: PublicKey = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_ID as PublicKeyInitData);
 const network = process.env.REACT_APP_SOLANA_NETWORK as WalletAdapterNetwork;
 
 const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST as string;
 const connection = new anchor.web3.Connection(rpcHost);
 
-const startDateSeed = parseInt(
-  process.env.REACT_APP_CANDY_START_DATE as string,
-  10
-);
+const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE as string, 10);
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
 const theme = createTheme({
@@ -70,14 +58,8 @@ const App = () => {
   const endpoint = useMemo(() => clusterApiUrl(network), []);
 
   const wallets = useMemo(
-    () => [
-      getPhantomWallet(),
-      getSlopeWallet(),
-      getSolflareWallet(),
-      getSolletWallet({ network }),
-      getSolletExtensionWallet({ network }),
-    ],
-    []
+    () => [getPhantomWallet(), getSlopeWallet(), getSolflareWallet(), getSolletWallet({ network }), getSolletExtensionWallet({ network })],
+    [],
   );
 
   return (
