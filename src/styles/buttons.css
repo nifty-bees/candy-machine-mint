@@ -1,0 +1,28 @@
+.bttn-large {
+  position: absolute;
+  width: 434.03px;
+  height: 102.35px;
+  left: 503px;
+  top: 1544px;
+
+  background: #22c1dc;
+  box-shadow: 0px 4px 20px rgba (20,  126,  144,  0.32);
+  border-radius: 15px;
+}
+
+.select-wallet-text {
+  position: absolute;
+  width: 434.03px;
+  height: 100.41px;
+  left: 503px;
+  top: 1546.59px;
+  font-family: Inconsolata;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 52px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+}
