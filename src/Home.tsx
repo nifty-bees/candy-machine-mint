@@ -13,6 +13,12 @@ import { WalletDialogButton } from '@solana/wallet-adapter-material-ui';
 
 import { CandyMachine, awaitTransactionSignatureConfirmation, getCandyMachineState, mintOneToken, shortenAddress } from './candy-machine';
 
+interface AlertState {
+  open: boolean;
+  message: string;
+  severity: 'success' | 'info' | 'warning' | 'error' | undefined;
+}
+
 const ConnectButton = styled(WalletDialogButton)``;
 
 const CounterText = styled.span``; // add your styles here
@@ -116,7 +122,7 @@ const Home = (props: HomeProps) => {
           message = 'SOLD OUT!';
           setIsSoldOut(true);
         } else if (error.code === 312) {
-          message = 'Minting period hasn\'t started yet.';
+          message = "Minting period hasn't started yet.";
         }
       }
 
@@ -147,20 +153,20 @@ const Home = (props: HomeProps) => {
   useEffect(refreshCandyMachineState, [wallet, props.candyMachineId, props.connection]);
 
   return (
-    <main>
+    <div>
       {wallet && <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || '')}</p>}
-
       {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
-
       {wallet && <p>Total Available: {itemsAvailable}</p>}
-
       {wallet && <p>Redeemed: {itemsRedeemed}</p>}
-
       {wallet && <p>Remaining: {itemsRemaining}</p>}
 
       <MintContainer>
         {!wallet ? (
-          <ConnectButton>Connect Wallet</ConnectButton>
+          <ConnectButton className='bttn-large'>
+            <span className='select-wallet-text' style={{ textAlign: 'center' }}>
+              Select Wallet
+            </span>
+          </ConnectButton>
         ) : (
           <MintButton disabled={isSoldOut || isMinting || !isActive} onClick={onMint} variant='contained'>
             {isSoldOut ? (
@@ -188,14 +194,8 @@ const Home = (props: HomeProps) => {
           {alertState.message}
         </Alert>
       </Snackbar>
-    </main>
+    </div>
   );
 };
-
-interface AlertState {
-  open: boolean;
-  message: string;
-  severity: 'success' | 'info' | 'warning' | 'error' | undefined;
-}
 
 export default Home;

@@ -13,9 +13,15 @@ import {
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 
 import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
-import { createTheme, ThemeProvider } from '@material-ui/core';
+import { createTheme, Grid, ThemeProvider } from '@material-ui/core';
 
 import Home from './Home';
+import Hero from './Hero';
+import Wallet from './Wallet';
+import Social from './Social';
+import Roadmap from './Roadmap';
+import BeeGallery from './BeeGallery';
+import FAQ from './FAQ';
 import './styles/App.css';
 
 const treasury: PublicKey = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS as PublicKeyInitData);
@@ -30,26 +36,16 @@ const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE as string,
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
 const theme = createTheme({
-  palette: {
-    type: 'dark',
-  },
+  palette: { type: 'dark' },
   overrides: {
-    MuiButtonBase: {
-      root: {
-        justifyContent: 'flex-start',
-      },
-    },
+    MuiButtonBase: { root: { justifyContent: 'flex-start' } },
     MuiButton: {
       root: {
         textTransform: undefined,
         padding: '12px 16px',
       },
-      startIcon: {
-        marginRight: 8,
-      },
-      endIcon: {
-        marginLeft: 8,
-      },
+      startIcon: { marginRight: 8 },
+      endIcon: { marginLeft: 8 },
     },
   },
 });
@@ -65,18 +61,27 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect={true}>
-          <WalletDialogProvider>
-            <Home
-              candyMachineId={candyMachineId}
-              config={config}
-              connection={connection}
-              startDate={startDateSeed}
-              treasury={treasury}
-              txTimeout={txTimeout}
-            />
-          </WalletDialogProvider>
-        </WalletProvider>
+        <Grid container alignItems='center' style={{ overflow: 'hidden' }}>
+          <Hero />
+          <Wallet>
+            <WalletProvider wallets={wallets} autoConnect={true}>
+              <WalletDialogProvider>
+                <Home
+                  candyMachineId={candyMachineId}
+                  config={config}
+                  connection={connection}
+                  startDate={startDateSeed}
+                  treasury={treasury}
+                  txTimeout={txTimeout}
+                />
+              </WalletDialogProvider>
+            </WalletProvider>
+          </Wallet>
+          <Social />
+          <Roadmap />
+          <BeeGallery />
+          <FAQ />
+        </Grid>
       </ConnectionProvider>
     </ThemeProvider>
   );
