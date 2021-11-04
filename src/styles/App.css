@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+
+.img-bg {
+  /* max-width: 100%;
+  height: 1800px; */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

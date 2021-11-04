@@ -1,0 +1,12 @@
+.social {
+  height: 547px;
+  width: 94%;
+  z-index: 1;
+  margin-left: 2.5%;
+}
+
+.social-icon {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

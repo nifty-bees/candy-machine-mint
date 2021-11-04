@@ -1,0 +1,17 @@
+.bttn-large {
+  width: 400px;
+  height: 100px;
+  background: #22c1dc;
+  box-shadow: 0px 4px 20px rgba (20,  126,  144,  0.32);
+  border-radius: 15px;
+}
+
+.select-wallet-text {
+  font-family: Inconsolata;
+  padding-left: 25%;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.8em;
+  text-align: center;
+  color: #ffffff;
+}
